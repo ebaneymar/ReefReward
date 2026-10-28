@@ -1,0 +1,12 @@
+node_modules/
+build/
+release/
+.cache/
+*.log
+Data/
+Classroom/
+Versions/
+UpdateSource.json
+updates.json
+# Built from game-src by assemble-game.py
+app/game.html

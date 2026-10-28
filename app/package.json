@@ -1,0 +1,9 @@
+{
+  "name": "reef-rewards-desktop",
+  "productName": "Reef Rewards",
+  "version": "1.1.0",
+  "description": "Offline classroom aquarium with GitHub game updates",
+  "main": "main.js",
+  "private": true,
+  "license": "UNLICENSED"
+}

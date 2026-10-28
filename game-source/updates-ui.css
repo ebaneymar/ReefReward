@@ -1,0 +1,7 @@
+.reef-update-button{white-space:nowrap;flex-shrink:0;min-height:40px;padding:9px 14px;border:1px solid #bdffdf;background:linear-gradient(135deg,#baffe0,#53e7d7);color:#073b3c;box-shadow:0 4px 14px #002b4155;font-size:12px;letter-spacing:.1px}
+.reef-update-button:hover{background:linear-gradient(135deg,#dcfff0,#8cf5e6)}
+.reef-update-button[data-update-state="available"]{background:linear-gradient(135deg,#fff0ad,#f3cc78);border-color:#fff0ba;color:#443711}
+#tankUpdateButton{display:none}.aquarium-full #tankUpdateButton{display:inline-flex}
+#desktopUpdatesButton{display:none!important}
+.game-update-info{text-align:center;padding:12px 8px 6px}.update-mark{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:20px;background:#9ef6d922;color:#baffdf;font-size:38px}.game-update-info h3{font-size:21px;margin:15px 0 8px}.game-update-info p{line-height:1.7}.game-download-link{display:inline-flex;padding:13px 19px;margin:10px 0 12px;border-radius:12px;background:#acffdd;color:#073b3c;text-decoration:none;font-weight:700}
+@media(max-width:760px){.topbar{height:auto;min-height:76px;flex-wrap:wrap;gap:9px;padding-top:12px;padding-bottom:12px}.top-actions{width:100%;justify-content:flex-end;flex-wrap:wrap}.reef-update-button{min-height:36px;font-size:11px;padding:8px 11px}.top-actions .reef-update-button{margin-right:auto}.aquarium-full #tankUpdateButton{padding:8px 10px;font-size:10px}.aquarium-full .tank-top{gap:8px}.aquarium-full #glowCount{display:none}}

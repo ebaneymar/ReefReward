@@ -1,0 +1,55 @@
+name: Publish Reef Rewards update
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'game-src/**'
+      - 'scripts/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'electron-builder.json'
+      - 'RELEASE_NOTES.txt'
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: reef-rewards-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Assemble the offline game
+        run: python3 scripts/assemble-game.py
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check game, saves and updater
+        run: npm test
+      - name: Assign the next update version
+        id: version
+        run: node scripts/ci-version.js
+      - name: Prepare Windows app and matching update package
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          python3 scripts/build.py --version "$VERSION"
+          python3 scripts/make-update.py --version "$VERSION" --repo "$REPOSITORY" --notes RELEASE_NOTES.txt
+      - name: Build Windows EXE
+        run: npm run build:exe
+      - name: Prepare downloads and checksums
+        run: python3 scripts/prepare-release-assets.py
+      - name: Publish completed update
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: node scripts/publish-release.js

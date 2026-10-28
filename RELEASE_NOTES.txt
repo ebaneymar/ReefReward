@@ -1,0 +1,4 @@
+Update game is visible in the header and fullscreen aquarium.
+Updates are connected to ReefReward automatically; no source link needs to be pasted.
+Future source changes are tested, built and uploaded by GitHub automatically.
+Existing points, saves, collections, reusable limited fish and Mystery Diver are preserved.

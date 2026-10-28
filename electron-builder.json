@@ -1,0 +1,10 @@
+{
+  "appId": "com.reefrewards.classroom",
+  "productName": "Reef Rewards",
+  "electronVersion": "45.0.0",
+  "directories": {"output":"release"},
+  "artifactName":"Reef_Rewards_${version}_Windows.${ext}",
+  "win": {"target":[{"target":"portable","arch":["x64"]}],"executableName":"ReefRewards","icon":"app/assets/reef.ico","signAndEditExecutable":false},
+  "portable": {"requestExecutionLevel":"user"},
+  "publish": null
+}

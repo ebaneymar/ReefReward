@@ -1,0 +1,17 @@
+{
+  "name": "reef-rewards-desktop",
+  "productName": "Reef Rewards",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Offline classroom aquarium with safe GitHub content updates",
+  "author": "Reef Rewards",
+  "main": "app/main.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "build:exe": "electron-builder --win portable --x64 --prepackaged build/win-unpacked --config electron-builder.json"
+  },
+  "devDependencies": {
+    "electron-builder": "26.18.0"
+  }
+}
