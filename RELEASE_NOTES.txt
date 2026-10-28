@@ -1,4 +1,5 @@
-Update game is visible in the header and fullscreen aquarium.
-Updates are connected to ReefReward automatically; no source link needs to be pasted.
-Future source changes are tested, built and uploaded by GitHub automatically.
-Existing points, saves, collections, reusable limited fish and Mystery Diver are preserved.
+Summative Champions: 20 male and female editions in 10 exclusive pairs.
+Teacher awards the highest summative exam scorer manually, with no growth-point requirement.
+Claiming either version reserves both; only the chosen fish can be equipped.
+Exam labels, scores, and ownership autosave; Undo and owner deletion release the pair.
+Existing 100-point rewards, fish animations, points, Mystery Diver and updates are preserved.

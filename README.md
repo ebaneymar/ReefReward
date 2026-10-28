@@ -8,6 +8,12 @@ Download Reef_Rewards_Windows.exe from the latest GitHub release. Keep the EXE a
 
 The update source is preconfigured to ebaneymar/ReefReward. The game checks automatically on startup. Click **Update game**, then **Install update & restart** when an update is ready. Classroom data remains on the teacher's computer; game publishing does not upload student records.
 
+## Summative champions
+
+Select the highest summative-exam scorer in the roster, then click the trophy Summative button or Styles > Summative. All 20 male/female designs are visible from the start, in 10 exclusive pairs. Click Award on one fish, optionally record the exam and score, and confirm the student. Growth points and shells are unchanged. Claiming either version reserves the entire pair; only the awarded version can be equipped. A student can receive different pairs for different exams.
+
+These champion editions reuse the saved fantasy artwork with gold champion effects and signature trails. Their ownership is separate from the existing 100-point collection. Awards, labels and scores autosave and export with the class. Undo can correct an award; deleting the owner makes both versions available again. No winner is inferred from classroom growth points.
+
 ## Automatic publishing
 
 A push to main that changes game source, artwork, desktop code, tests or the release workflow runs the checks, builds the Windows app and content update, and publishes both with a matching update manifest. Version numbers are assigned automatically as 1.1.<workflow run number>. Releases remain drafts until all assets finish uploading. Published versions are immutable; a failed build leaves the previous update available.
