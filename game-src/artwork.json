@@ -235,38 +235,38 @@
   },
   {
     "token": "@@REEF_IMAGE_039@@",
-    "path": "artwork/summative-hearts.png",
-    "mime": "image/png",
-    "sha256": "dd2fae43630baf9789a7af2104f0a2b704ae3582c47d039280ff56782eed7870"
+    "path": "artwork/summative-hearts.webp",
+    "mime": "image/webp",
+    "sha256": "128a8b9a9119dccb56d6d4644fe8797d22137740dc430929594f749d9f3e103e"
   },
   {
     "token": "@@REEF_IMAGE_040@@",
-    "path": "artwork/summative-letters.png",
-    "mime": "image/png",
-    "sha256": "d4b2ac6db6e483004a51bca51de6e928cb37666e9423957a6e3eb257450ca30f"
+    "path": "artwork/summative-letters.webp",
+    "mime": "image/webp",
+    "sha256": "d5bcb482a67e5f823a1554dd1059e939a41b832123fbaa1ea9253833b70a389f"
   },
   {
     "token": "@@REEF_IMAGE_041@@",
-    "path": "artwork/summative-infinity.png",
-    "mime": "image/png",
-    "sha256": "963f98f92e7f582436c61a2a8488526d6b0827fb0d9e81cc3993b74395309d03"
+    "path": "artwork/summative-infinity.webp",
+    "mime": "image/webp",
+    "sha256": "a1e9820dbcd0b98d3c83fb7b656990711dbaf242ac9729460736e3016a23ce6d"
   },
   {
     "token": "@@REEF_IMAGE_042@@",
-    "path": "artwork/summative-heritage.png",
-    "mime": "image/png",
-    "sha256": "1a2038156240323c712ac3bbf68304bf428a48dee874b3d20d3bd0898f49db35"
+    "path": "artwork/summative-heritage.webp",
+    "mime": "image/webp",
+    "sha256": "860aa3ad5726179915abe2409661c60ab2d2f3ba71b8b53c501ca3a648e1b93a"
   },
   {
     "token": "@@REEF_IMAGE_043@@",
-    "path": "artwork/summative-sunstar.png",
-    "mime": "image/png",
-    "sha256": "7189b2038905b18f6b9b17c97ffbb06f6bcc6a31f1406cd8cc2f35351c7287ee"
+    "path": "artwork/summative-sunstar.webp",
+    "mime": "image/webp",
+    "sha256": "c5f2dd4a2ce83c67bcb8bfb9e78d8e19c935808044bf727f8e4358a2ab8d4269"
   },
   {
     "token": "@@REEF_IMAGE_044@@",
-    "path": "artwork/summative-scholars.png",
-    "mime": "image/png",
-    "sha256": "eaeb6d25f808258305d51d634834b1f8087a87924cd13a90a75e3c68ebebad64"
+    "path": "artwork/summative-scholars.webp",
+    "mime": "image/webp",
+    "sha256": "a49a54bb0c346c41a38e21383260174bc20c24e30619efeac82f16a42d6c537c"
   }
 ]

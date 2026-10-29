@@ -52,3 +52,14 @@ test('The mistaken v1.1.2 awards revert to original looks without losing later s
  fixed.run('undo()');assert.equal(fixed.run('state.students[0].points'),120);assert.equal(fixed.run('state.students[0].form'),'betta');assert.equal(fixed.run('LEGACY_SUMMATIVE_KEYS.some(key=>limitedOwner(key))'),false);
  const imported=await game();imported.run('state=validateState('+JSON.stringify(raw)+')');assert.equal(imported.run('state.students[0].form'),'betta');assert.equal(imported.run("summativePairClaim('Hearts')"),null);
 });
+
+test('Left-facing supplied variants are mirrored once in the sprite cache while other art keeps its orientation',async()=>{
+ const g=await game();
+ g.run("var mirrorCalls=[];document.createElement=()=>({width:0,height:0,getContext:()=>({save(){},restore(){},translate(){},scale(x,y){mirrorCalls.push([x,y])},drawImage(){},filter:'none'})});bundleReady.summative_infinity=true;bundleReady.summative_hearts=true;bundleImages.summative_infinity={};bundleImages.summative_hearts={};spriteCache.clear()");
+ g.run("spriteFor({...state.students[0],form:'summative_infinity_queen',skin:'natural',hero:'none',_showcase:true})");
+ assert.deepEqual(g.json('mirrorCalls'),[[-1,1]]);
+ g.run("spriteFor({...state.students[0],form:'summative_infinity_queen',skin:'natural',hero:'none',_showcase:true})");
+ assert.equal(g.run('mirrorCalls.length'),1,'Repeated frames reuse the oriented sprite');
+ g.run("spriteFor({...state.students[0],form:'summative_heart_queen',skin:'natural',hero:'none',_showcase:true})");
+ assert.equal(g.run('mirrorCalls.length'),1,'Right-facing art is not mirrored');
+});

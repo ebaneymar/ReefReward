@@ -979,12 +979,12 @@ function drawLimitedSwimming(c,image,left,top,width,height,motion,form,still,tim
  const px=width/a.width,py=height/a.height;c.drawImage(mesh.blend,left-a.pad*px,top-a.pad*py,width+a.pad*2*px,height+a.pad*2*py);
 }
 
-VISUALS.bundles["summative_hearts"]={"image":"@@REEF_IMAGE_039@@","regions":[[144,0,674,885],[972,35,670,852]]};
-VISUALS.bundles["summative_letters"]={"image":"@@REEF_IMAGE_040@@","regions":[[95,7,654,877],[1030,14,537,873]]};
-VISUALS.bundles["summative_infinity"]={"image":"@@REEF_IMAGE_041@@","regions":[[34,0,836,887],[918,15,809,868]]};
-VISUALS.bundles["summative_heritage"]={"image":"@@REEF_IMAGE_042@@","regions":[[31,9,878,878],[946,9,804,875]]};
-VISUALS.bundles["summative_sunstar"]={"image":"@@REEF_IMAGE_043@@","regions":[[16,0,966,887],[982,33,765,854]]};
-VISUALS.bundles["summative_scholars"]={"image":"@@REEF_IMAGE_044@@","regions":[[112,20,882,689],[994,19,955,692]]};
+VISUALS.bundles["summative_hearts"]={"image":"@@REEF_IMAGE_039@@","regions":[[107,9,687,869],[970,36,623,838]],"mirror":[false,false]};
+VISUALS.bundles["summative_letters"]={"image":"@@REEF_IMAGE_040@@","regions":[[94,14,725,860],[973,34,701,833]],"mirror":[false,false]};
+VISUALS.bundles["summative_infinity"]={"image":"@@REEF_IMAGE_041@@","regions":[[35,2,745,874],[1083,20,658,855]],"mirror":[false,true]};
+VISUALS.bundles["summative_heritage"]={"image":"@@REEF_IMAGE_042@@","regions":[[50,2,658,884],[1149,27,574,859]],"mirror":[false,true]};
+VISUALS.bundles["summative_sunstar"]={"image":"@@REEF_IMAGE_043@@","regions":[[73,4,757,880],[1101,33,633,843]],"mirror":[false,false]};
+VISUALS.bundles["summative_scholars"]={"image":"@@REEF_IMAGE_044@@","regions":[[47,11,633,865],[1168,12,582,864]],"mirror":[false,false]};
 // These are the six new user-supplied royal pairs, independent of point rewards.
 const SUMMATIVE_FORMS={
  summative_heart_king:{name:'Aurelian Heartfin',sex:'Male',pair:'Hearts',bundle:'summative_hearts',index:0,glow:'#ffb9a3',motif:'heart',style:'crown',move:'circle',power:'Royal heart parade',trailName:'Ruby heart pearls',detail:'Crimson scales, a heart crown, and flowing gold-edged fins.'},
@@ -1573,7 +1573,7 @@ spriteFor=function(s){
  const st=stageIndex(s.points),row=st===0?0:st<=2?1:2,key=`look-${form}-${family}-${s.color}-${hero}-${skin}-${row}`;if(spriteCache.has(key))return spriteCache.get(key);
  const r=original?VISUALS.regions[row][family]:formRegion(s),source=original?fishAtlas:f.bundle?bundleImages[f.bundle]:f.atlas!==undefined?speciesAtlas:formAtlas,c=document.createElement('canvas');c.width=r[2];c.height=r[3];const g=c.getContext('2d'),base=original?[28,222,325][family]:f.atlas!==undefined?[25,205,42,38,5,172][f.atlas]:205,target=hero==='spider'?12:[170,20,277,43,210,325][s.color];
  if(skin==='natural')g.filter=hero==='bat'?'grayscale(.9) brightness(.6) saturate(.8)':hero==='spider'?`hue-rotate(${12-base}deg) saturate(1.1)`:original?`hue-rotate(${target-base}deg) saturate(1.07)`:'none';
- g.drawImage(source,...r,0,0,c.width,c.height);g.filter='none';if(form==='black_widow')g.clearRect(0,0,Math.ceil(c.width*.04),c.height);if(skin!=='natural')applyMetalFinish(c,skin);spriteCache.set(key,c);return c;
+ g.save();if(f.bundle&&VISUALS.bundles[f.bundle].mirror?.[f.index]){g.translate(c.width,0);g.scale(-1,1);}g.drawImage(source,...r,0,0,c.width,c.height);g.restore();g.filter='none';if(form==='black_widow')g.clearRect(0,0,Math.ceil(c.width*.04),c.height);if(skin!=='natural')applyMetalFinish(c,skin);spriteCache.set(key,c);return c;
 };
 const sheenCache=new WeakMap();
 function reflectiveSprite(image,time,still){

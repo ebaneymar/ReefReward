@@ -1,9 +1,9 @@
-VISUALS.bundles["summative_hearts"]={"image":"@@REEF_IMAGE_039@@","regions":[[144,0,674,885],[972,35,670,852]]};
-VISUALS.bundles["summative_letters"]={"image":"@@REEF_IMAGE_040@@","regions":[[95,7,654,877],[1030,14,537,873]]};
-VISUALS.bundles["summative_infinity"]={"image":"@@REEF_IMAGE_041@@","regions":[[34,0,836,887],[918,15,809,868]]};
-VISUALS.bundles["summative_heritage"]={"image":"@@REEF_IMAGE_042@@","regions":[[31,9,878,878],[946,9,804,875]]};
-VISUALS.bundles["summative_sunstar"]={"image":"@@REEF_IMAGE_043@@","regions":[[16,0,966,887],[982,33,765,854]]};
-VISUALS.bundles["summative_scholars"]={"image":"@@REEF_IMAGE_044@@","regions":[[112,20,882,689],[994,19,955,692]]};
+VISUALS.bundles["summative_hearts"]={"image":"@@REEF_IMAGE_039@@","regions":[[107,9,687,869],[970,36,623,838]],"mirror":[false,false]};
+VISUALS.bundles["summative_letters"]={"image":"@@REEF_IMAGE_040@@","regions":[[94,14,725,860],[973,34,701,833]],"mirror":[false,false]};
+VISUALS.bundles["summative_infinity"]={"image":"@@REEF_IMAGE_041@@","regions":[[35,2,745,874],[1083,20,658,855]],"mirror":[false,true]};
+VISUALS.bundles["summative_heritage"]={"image":"@@REEF_IMAGE_042@@","regions":[[50,2,658,884],[1149,27,574,859]],"mirror":[false,true]};
+VISUALS.bundles["summative_sunstar"]={"image":"@@REEF_IMAGE_043@@","regions":[[73,4,757,880],[1101,33,633,843]],"mirror":[false,false]};
+VISUALS.bundles["summative_scholars"]={"image":"@@REEF_IMAGE_044@@","regions":[[47,11,633,865],[1168,12,582,864]],"mirror":[false,false]};
 // These are the six new user-supplied royal pairs, independent of point rewards.
 const SUMMATIVE_FORMS={
  summative_heart_king:{name:'Aurelian Heartfin',sex:'Male',pair:'Hearts',bundle:'summative_hearts',index:0,glow:'#ffb9a3',motif:'heart',style:'crown',move:'circle',power:'Royal heart parade',trailName:'Ruby heart pearls',detail:'Crimson scales, a heart crown, and flowing gold-edged fins.'},
