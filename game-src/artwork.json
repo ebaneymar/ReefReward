@@ -232,5 +232,41 @@
     "path": "artwork/038.webp",
     "mime": "image/webp",
     "sha256": "76e3cb9a3edf0df4c4441d144c61f8473046a420d052cf585c588f66d617b387"
+  },
+  {
+    "token": "@@REEF_IMAGE_039@@",
+    "path": "artwork/summative-hearts.png",
+    "mime": "image/png",
+    "sha256": "dd2fae43630baf9789a7af2104f0a2b704ae3582c47d039280ff56782eed7870"
+  },
+  {
+    "token": "@@REEF_IMAGE_040@@",
+    "path": "artwork/summative-letters.png",
+    "mime": "image/png",
+    "sha256": "d4b2ac6db6e483004a51bca51de6e928cb37666e9423957a6e3eb257450ca30f"
+  },
+  {
+    "token": "@@REEF_IMAGE_041@@",
+    "path": "artwork/summative-infinity.png",
+    "mime": "image/png",
+    "sha256": "963f98f92e7f582436c61a2a8488526d6b0827fb0d9e81cc3993b74395309d03"
+  },
+  {
+    "token": "@@REEF_IMAGE_042@@",
+    "path": "artwork/summative-heritage.png",
+    "mime": "image/png",
+    "sha256": "1a2038156240323c712ac3bbf68304bf428a48dee874b3d20d3bd0898f49db35"
+  },
+  {
+    "token": "@@REEF_IMAGE_043@@",
+    "path": "artwork/summative-sunstar.png",
+    "mime": "image/png",
+    "sha256": "7189b2038905b18f6b9b17c97ffbb06f6bcc6a31f1406cd8cc2f35351c7287ee"
+  },
+  {
+    "token": "@@REEF_IMAGE_044@@",
+    "path": "artwork/summative-scholars.png",
+    "mime": "image/png",
+    "sha256": "eaeb6d25f808258305d51d634834b1f8087a87924cd13a90a75e3c68ebebad64"
   }
 ]

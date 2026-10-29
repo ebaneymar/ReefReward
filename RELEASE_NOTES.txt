@@ -1,5 +1,6 @@
-Summative Champions: 20 male and female editions in 10 exclusive pairs.
-Teacher awards the highest summative exam scorer manually, with no growth-point requirement.
-Claiming either version reserves both; only the chosen fish can be equipped.
-Exam labels, scores, and ownership autosave; Undo and owner deletion release the pair.
-Existing 100-point rewards, fish animations, points, Mystery Diver and updates are preserved.
+Correct Summative awards: all 12 royal fish from the six matching male/female pair sheets.
+Hearts, Letters, Infinity, Heritage, Sun & Stars and Celestial Scholars, with transparent art and moving fins.
+Removed the wrong 100-point Summative copies and repaired old saves, backups and Undo history.
+Teacher chooses the exam winner manually; either choice sells out both versions of that pair.
+Points, existing 100-point fish, legitimate limited ownership, Mystery Diver and autosave are preserved.
+Update game is now inside Settings, with a notification when an update is ready.

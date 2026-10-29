@@ -1,18 +1,20 @@
 # Reef Rewards
 
-Offline Windows classroom aquarium, with an Update game button in the header and fullscreen tank.
+Offline Windows classroom aquarium, with Update game inside Settings and shortcuts in the header and fullscreen tank.
 
 ## Play and save
 
 Download Reef_Rewards_Windows.exe from the latest GitHub release. Keep the EXE and open it for offline play. Progress autosaves after changes. Use Settings → Export backup for an extra JSON copy, and Restore backup to recover it or move to another computer. When moving from an HTML file, export from the old file and restore once in the Windows app. Close an older Reef Rewards window before opening a new EXE.
 
-The update source is preconfigured to ebaneymar/ReefReward. The game checks automatically on startup. Click **Update game**, then **Install update & restart** when an update is ready. Classroom data remains on the teacher's computer; game publishing does not upload student records.
+The update source is preconfigured to ebaneymar/ReefReward. The game checks automatically on startup. Open **Settings → Update game**, then **Install update & restart** when an update is ready. Classroom data remains on the teacher's computer; game publishing does not upload student records.
 
 ## Summative champions
 
-Select the highest summative-exam scorer in the roster, then click the trophy Summative button or Styles > Summative. All 20 male/female designs are visible from the start, in 10 exclusive pairs. Click Award on one fish, optionally record the exam and score, and confirm the student. Growth points and shells are unchanged. Claiming either version reserves the entire pair; only the awarded version can be equipped. A student can receive different pairs for different exams.
+Select the highest summative-exam scorer in the roster, then click the trophy Summative button or Styles > Summative. The correct collection has 12 royal fish in 6 male/female pairs: Hearts, Letters, Infinity, Heritage, Sun & Stars, and Celestial Scholars. All are visible from the start. Click Award on one fish, optionally record the exam and score, and confirm the student. Growth points and shells are unchanged. Claiming either version reserves the whole pair; only the awarded version can be equipped. A student may win different pairs for different exams.
 
-These champion editions reuse the saved fantasy artwork with gold champion effects and signature trails. Their ownership is separate from the existing 100-point collection. Awards, labels and scores autosave and export with the class. Undo can correct an award; deleting the owner makes both versions available again. No winner is inferred from classroom growth points.
+The earlier 100-point fantasy fish retain their original reward rules. The mistaken v1.1.2 Summative copies are removed. Existing saves and imported backups automatically clear those mistaken claims and restore the pre-award look from available history, or the student's original fish when that history is unavailable. Later points, shells, badges, ordinary choices and legitimate limited ownership are preserved. Undo history is repaired to avoid bringing back the wrong fish. The new award pairs start available for a fresh teacher choice.
+
+Awards, exam labels and scores autosave and export with the class. Undo can correct an award; deleting the owner makes both versions available again. New transparent sprites retain the supplied royal designs, animated fins, hair, tails, and themed trails. See game-source/summative-artwork.md for asset paths and editing notes.
 
 ## Automatic publishing
 

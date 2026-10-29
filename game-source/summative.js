@@ -1,10 +1,47 @@
-// Teacher-awarded exam editions share artwork, never point-reward ownership.
-const SUMMATIVE_KEYS=CENTENNIAL100_KEYS.map(key=>'summative_'+key);
-const SUMMATIVE_PAIRS=[...new Set(CENTENNIAL100_KEYS.map(key=>FORMS[key].pair))];
-for(const source of CENTENNIAL100_KEYS){
- const key='summative_'+source,f=FORMS[source];
- FORMS[key]={...f,name:f.name+' · Summative',at:0,summative:true,summativeSource:source,trail:key,trailName:'Champion '+f.trailName.toLowerCase()};
+VISUALS.bundles["summative_hearts"]={"image":"@@REEF_IMAGE_039@@","regions":[[144,0,674,885],[972,35,670,852]]};
+VISUALS.bundles["summative_letters"]={"image":"@@REEF_IMAGE_040@@","regions":[[95,7,654,877],[1030,14,537,873]]};
+VISUALS.bundles["summative_infinity"]={"image":"@@REEF_IMAGE_041@@","regions":[[34,0,836,887],[918,15,809,868]]};
+VISUALS.bundles["summative_heritage"]={"image":"@@REEF_IMAGE_042@@","regions":[[31,9,878,878],[946,9,804,875]]};
+VISUALS.bundles["summative_sunstar"]={"image":"@@REEF_IMAGE_043@@","regions":[[16,0,966,887],[982,33,765,854]]};
+VISUALS.bundles["summative_scholars"]={"image":"@@REEF_IMAGE_044@@","regions":[[112,20,882,689],[994,19,955,692]]};
+// These are the six new user-supplied royal pairs, independent of point rewards.
+const SUMMATIVE_FORMS={
+ summative_heart_king:{name:'Aurelian Heartfin',sex:'Male',pair:'Hearts',bundle:'summative_hearts',index:0,glow:'#ffb9a3',motif:'heart',style:'crown',move:'circle',power:'Royal heart parade',trailName:'Ruby heart pearls',detail:'Crimson scales, a heart crown, and flowing gold-edged fins.'},
+ summative_heart_queen:{name:'Rosalune Heartfin',sex:'Female',pair:'Hearts',bundle:'summative_hearts',index:1,glow:'#ffd0e8',motif:'heart',style:'pearls',move:'eight',power:'Pearl heart waltz',trailName:'Rose heart ribbons',detail:'Rose-pink ribbons, pearl ornaments, and a jeweled heart crown.'},
+ summative_letter_king:{name:'Lexicon Tidekeeper',sex:'Male',pair:'Letters',bundle:'summative_letters',index:0,glow:'#a4e7ff',motif:'letters',style:'orbit',move:'circle',power:'Golden alphabet orbit',trailName:'Golden letters',detail:'A blue-and-gold scholar with a floating book and feather quill.'},
+ summative_letter_queen:{name:'Lyrabelle Scrollfin',sex:'Female',pair:'Letters',bundle:'summative_letters',index:1,glow:'#dccaff',motif:'letters',style:'sway',move:'eight',power:'Story ribbon dance',trailName:'Pearl alphabet',detail:'A lavender and turquoise scholar with scrolls and luminous letters.'},
+ summative_infinity_king:{name:'Infinitus Starweaver',sex:'Male',pair:'Infinity',bundle:'summative_infinity',index:0,glow:'#a5b6ff',motif:'infinity',style:'planet',move:'circle',power:'Infinite constellation orbit',trailName:'Infinity constellations',detail:'Midnight fins traced with geometry, planets, and infinity jewels.'},
+ summative_infinity_queen:{name:'Eternelle Orbitfin',sex:'Female',pair:'Infinity',bundle:'summative_infinity',index:1,glow:'#dfc2ff',motif:'infinity',style:'nebula',move:'eight',power:'Infinity figure eight',trailName:'Violet infinity loops',detail:'Lavender star ribbons and pearl planets beneath an infinity crown.'},
+ summative_heritage_king:{name:'Hiraya Goldweave',sex:'Male',pair:'Heritage',bundle:'summative_heritage',index:0,glow:'#ffd09d',motif:'weave',style:'crown',move:'circle',power:'Golden weave procession',trailName:'Golden woven stars',detail:'Ruby-and-cream fins with intricate gold patterns and a pearl sun crown.'},
+ summative_heritage_queen:{name:'Mutya Pearlweave',sex:'Female',pair:'Heritage',bundle:'summative_heritage',index:1,glow:'#ffe2bb',motif:'weave',style:'pearls',move:'eight',power:'Pearl ribbon waltz',trailName:'Woven pearl blossoms',detail:'Ivory and crimson ribbons, golden weaving, flowers, and pearls.'},
+ summative_sunstar_king:{name:'Lakan Suncrest',sex:'Male',pair:'Sun & Stars',bundle:'summative_sunstar',index:0,glow:'#ffe097',motif:'sun',style:'sunburst',move:'spin',power:'Suncrest victory spiral',trailName:'Sunburst stars',detail:'Red, blue, white, and gold fins with a radiant sun crown.'},
+ summative_sunstar_queen:{name:'Tala Starcrest',sex:'Female',pair:'Sun & Stars',bundle:'summative_sunstar',index:1,glow:'#fff0c4',motif:'sun',style:'ribbon',move:'circle',power:'Starlight ribbon whirl',trailName:'Pearl sunbeams',detail:'Flowing red-and-blue ribbons with a pearl sun and golden star chains.'},
+ summative_scholar_king:{name:'Astraeus Lorefin',sex:'Male',pair:'Celestial Scholars',bundle:'summative_scholars',index:0,glow:'#b8daff',motif:'book',style:'planet',move:'circle',power:'Celestial scholar orbit',trailName:'Starlit golden books',detail:'A celestial scholar with a golden book, planets, letters, and infinity gems.'},
+ summative_scholar_queen:{name:'Seraphina Lorefin',sex:'Female',pair:'Celestial Scholars',bundle:'summative_scholars',index:1,glow:'#ffcff0',motif:'book',style:'nebula',move:'eight',power:'Pearl wisdom dance',trailName:'Pearl pages and stars',detail:'Pink and lavender fins carry golden books, heart jewels, and little planets.'}
+};
+const SUMMATIVE_KEYS=Object.keys(SUMMATIVE_FORMS),SUMMATIVE_PAIRS=[...new Set(SUMMATIVE_KEYS.map(key=>SUMMATIVE_FORMS[key].pair))];
+for(const [key,f] of Object.entries(SUMMATIVE_FORMS))FORMS[key]={...f,at:0,boost:1.1,limited:true,ownCrown:true,centennial100:true,summative:true,element:'summative',rarity:'Summative Exclusive',trail:key};
+for(const key of SUMMATIVE_KEYS)limitedMotionProfiles[key]={face:FORMS[key].pair==='Sun & Stars'?[.64,.10,1,.40]:[.58,.16,1,.44],vertical:true,flow:FORMS[key].sex==='Female'?1.25:1.1,tailRoot:[.56,.50],tailTip:FORMS[key].pair==='Celestial Scholars'?[.20,.90]:[.78,.96]};
+const LEGACY_SUMMATIVE_KEYS=CENTENNIAL100_KEYS.map(key=>'summative_'+key);
+function repairMistakenSummativeAwards(raw){
+ if(!raw||!Array.isArray(raw.students))return raw;
+ const legacy=key=>LEGACY_SUMMATIVE_KEYS.includes(key),claims=raw.game?.limited?.claims||{},history=Array.isArray(raw.history)?raw.history.filter(h=>h&&Array.isArray(h.changes)):[];
+ if(!raw.students.some(s=>legacy(s.form))&&!Object.keys(claims).some(legacy)&&!history.some(h=>(h.changes||[]).some(c=>legacy(c.beforeMeta?.form)||legacy(c.afterMeta?.form))||Object.keys(h.limitedBefore?.claims||{}).some(legacy)))return raw;
+ const fixed=JSON.parse(JSON.stringify(raw)),looks=new Map();
+ for(const s of fixed.students){
+  let previous=null;
+  for(const h of history){const c=(h.changes||[]).find(c=>c.id===s.id&&legacy(c.afterMeta?.form)&&c.beforeMeta&&!legacy(c.beforeMeta.form));if(c){previous=c.beforeMeta;break;}}
+  const form=previous?.form&&Object.hasOwn(FORMS,previous.form)&&(!FORMS[previous.form].limited||claims[previous.form]?.id===s.id)?previous.form:'normal';
+  const look={form,skin:previous?.skin&&Object.hasOwn(SKINS,previous.skin)?previous.skin:'natural',hero:previous?.hero&&Object.hasOwn(HEROES,previous.hero)?previous.hero:'none'};looks.set(s.id,look);
+  if(legacy(s.form))Object.assign(s,look);
+ }
+ const clearClaims=pool=>{if(pool?.claims)for(const key of LEGACY_SUMMATIVE_KEYS)delete pool.claims[key];};clearClaims(fixed.game?.limited);
+ fixed.history=(Array.isArray(fixed.history)?fixed.history:[]).filter(h=>h&&Array.isArray(h.changes)&&!h.changes.some(c=>legacy(c.afterMeta?.form)&&c.beforeMeta&&!legacy(c.beforeMeta.form)&&c.before===c.after)).map(h=>{
+  clearClaims(h.limitedBefore);for(const c of h.changes||[])for(const field of ['beforeMeta','afterMeta'])if(legacy(c[field]?.form))Object.assign(c[field],looks.get(c.id)||{form:'normal',skin:'natural',hero:'none'});return h;
+ });return fixed;
 }
+const validateBeforeSummativeCorrection=validateState;
+validateState=function(raw){return validateBeforeSummativeCorrection(repairMistakenSummativeAwards(raw));};
 function summativeText(value,max){return typeof value==='string'?value.replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,max):'';}
 const normalizeBeforeSummative=normalizeLimited;
 normalizeLimited=function(raw,students=[],migrate=true){
@@ -34,9 +71,9 @@ function openSummativeAward(id,key){
  const f=FORMS[key];pendingSummativeAward={id,key,token:uid()};stylePreviews=[];previewFish=null;
  const note=s.points<0?'<p class="summative-note">The award stays saved while this creature grows back to 0 points.</p>':'';
  preview.innerHTML=dialogShell('Award a summative champion','Teacher choice · highest summative exam score',
-  `<section class="summative-confirm"><div class="summative-confirm-art"><img src="${VISUALS.bundles[f.bundle].image}" alt="${esc(f.name)}"></div><span class="summative-kicker">${esc(f.pair.toUpperCase())} PAIR · ONE WINNER</span><h3>${esc(s.name)}</h3><p>You are awarding <strong>${esc(FORMS[f.summativeSource].name)}</strong> (${f.sex.toLowerCase()}) to the highest scorer. <strong>Both the male and female versions will be sold out.</strong></p><label class="field"><span>Exam (optional)</span><input id="summativeExam" maxlength="60" value="Summative exam" placeholder="e.g. Math · Summative 1"></label><label class="field"><span>Exam score (optional)</span><input id="summativeScore" maxlength="24" placeholder="e.g. 38 / 40"></label><p class="summative-note">You select the winner. Classroom growth points are not used to decide this award and will stay the same.</p>${note}</section>`,
+  `<section class="summative-confirm"><div class="summative-confirm-art"><canvas id="summativeConfirmArt" width="600" height="380" aria-label="${esc(f.name)}"></canvas></div><span class="summative-kicker">${esc(f.pair.toUpperCase())} PAIR · ONE WINNER</span><h3>${esc(s.name)}</h3><p>You are awarding <strong>${esc(f.name)}</strong> (${f.sex.toLowerCase()}) to the highest scorer. <strong>Both the male and female versions will be sold out.</strong></p><label class="field"><span>Exam (optional)</span><input id="summativeExam" maxlength="60" value="Summative exam" placeholder="e.g. Math · Summative 1"></label><label class="field"><span>Exam score (optional)</span><input id="summativeScore" maxlength="24" placeholder="e.g. 38 / 40"></label><p class="summative-note">You select the winner. Classroom growth points are not used to decide this award and will stay the same.</p>${note}</section>`,
   `<button data-action="summativeCancel">Back to collection</button><button class="primary" data-action="summativeConfirm" data-token="${pendingSummativeAward.token}">Award to ${esc(s.name)}</button>`);
- if(!preview.open)preview.showModal();return true;
+ const shown={...s,form:key,points:Math.max(0,s.points),skin:'natural',hero:'none',equipped:'none',_showcase:true};stylePreviews=[{id:'summativeConfirmArt',s:shown,live:true}];if(!preview.open)preview.showModal();drawCardFish($('summativeConfirmArt'),shown);return true;
 }
 function confirmSummativeAward(token){
  const pending=pendingSummativeAward;if(!pending||pending.token!==token)return false;
@@ -47,28 +84,39 @@ function confirmSummativeAward(token){
  s.form=pending.key;s.skin='natural';s.hero='none';selectedId=s.id;pendingSummativeAward=null;
  finishGameChange(s.name+': summative champion · '+f.pair,[{id:s.id,before:s.points,after:s.points,beforeMeta,afterMeta:captureMeta(s)}],reefBefore,limitedBefore);
  lookTab='summative';openGameDialog('styles',s.id);preview.scrollTop=0;
- showCelebration('Summative champion!',s.name+' · '+FORMS[f.summativeSource].name+' · '+f.pair+' pair reserved.','🏆');
+ showCelebration('Summative champion!',s.name+' · '+f.name+' · '+f.pair+' pair reserved.','🏆');
  toast('Award saved · both versions of the '+f.pair+' pair are sold out.',true);return true;
 }
 const claimBeforeSummative=claimLimitedFish;
 claimLimitedFish=function(id,key){return SUMMATIVE_KEYS.includes(key)?openSummativeAward(id,key):claimBeforeSummative(id,key);};
-function buildSummativeGallery(s){
+function buildSummativeGallery(s,previews=[]){
  const awarded=SUMMATIVE_PAIRS.filter(pair=>summativePairClaim(pair)).length;
- return `<section id="summativeGallery" class="summative-gallery" aria-label="Summative champion fish"><div class="summative-heading"><span class="summative-trophy" aria-hidden="true">🏆</span><div><span class="summative-kicker">SUMMATIVE CHAMPIONS · TEACHER AWARDS</span><h3>One pair. One exam champion.</h3><p>All twenty designs can be viewed from the start. Select the highest scorer yourself, then award either fish. Claiming one sells out both versions of its pair.</p></div><strong>${SUMMATIVE_PAIRS.length-awarded}<small>of 10 pairs available</small></strong></div><div class="summative-selected">Awarding to <strong>${esc(s.name)}</strong><span>No growth-point requirement · you choose the exam winner</span></div>${SUMMATIVE_PAIRS.map(pair=>{
+ return `<section id="summativeGallery" class="summative-gallery" aria-label="Summative champion fish"><div class="summative-heading"><span class="summative-trophy" aria-hidden="true">🏆</span><div><span class="summative-kicker">SUMMATIVE CHAMPIONS · TEACHER AWARDS</span><h3>One pair. One exam champion.</h3><p>All ${SUMMATIVE_KEYS.length} royal fish designs can be viewed from the start. Select the highest scorer yourself, then award either fish. Claiming one sells out both versions of its pair.</p></div><strong>${SUMMATIVE_PAIRS.length-awarded}<small>of ${SUMMATIVE_PAIRS.length} pairs available</small></strong></div><div class="summative-selected">Awarding to <strong>${esc(s.name)}</strong><span>No growth-point requirement · you choose the exam winner</span></div>${SUMMATIVE_PAIRS.map(pair=>{
   const owner=summativePairClaim(pair),ownerName=owner?displayLimitedName(owner):'',exam=owner?.exam||'Summative exam';
   return `<section class="summative-pair ${owner?'pair-sold':''}" data-summative-pair="${pair}"><div class="summative-pair-heading"><div><span>${owner?'PAIR SOLD OUT':'PAIR AVAILABLE'} · 1 WINNER</span><h4>${pair} champions</h4></div>${owner?`<p><strong>${esc(ownerName)}</strong><small>${esc(exam)}${owner.score?' · '+esc(owner.score):''}</small></p>`:'<p>Choose male <em>or</em> female.<small>Only one can be awarded.</small></p>'}</div><div class="summative-pair-grid">${SUMMATIVE_KEYS.filter(key=>FORMS[key].pair===pair).map(key=>{
    const f=FORMS[key],status=summativeStatus(s,key),yours=status==='owned',equipped=yours&&s.form===key,ready=status==='ready';
    const label=equipped?'✓ Equipped':yours?'Equip your champion':owner?'Sold out · pair reserved':'Award to '+s.name;
-   return `<article class="summative-card ${equipped?'chosen':''}" data-summative-design="${key}" style="--fish-glow:${f.glow}"><div class="summative-art"><img src="${VISUALS.bundles[f.bundle].image}" alt="${esc(FORMS[f.summativeSource].name)}, ${f.sex.toLowerCase()} ${pair.toLowerCase()} summative fish" width="512" height="512" loading="lazy" decoding="async"><span>${f.sex}</span>${yours?'<b>YOUR AWARD</b>':''}</div><div class="summative-copy"><small>${f.rarity}</small><h5>${FORMS[f.summativeSource].name}</h5><p>${f.detail}</p><span>✧ ${f.trailName}</span><span>↻ ${f.power}</span><button class="${ready?'claim-ready':''}" data-action="summativeAward" data-id="${esc(s.id)}" data-form="${key}" aria-label="${yours?'Equip':owner?'Sold out':'Award'} ${esc(FORMS[f.summativeSource].name)} summative fish" ${ready||yours?'':'disabled'}>${esc(label)}</button>${equipped?`<button data-action="centennialPower" data-id="${esc(s.id)}" ${s.points<0?'disabled':''}>Perform champion move</button>`:''}</div></article>`;
+   const artId='summativeArt-'+key;previews.push({id:artId,s:{...s,form:key,points:Math.max(0,s.points),hero:'none',skin:'natural',equipped:'none',_showcase:true},live:true});
+   return `<article class="summative-card ${equipped?'chosen':''}" data-summative-design="${key}" style="--fish-glow:${f.glow}"><div class="summative-art"><canvas id="${artId}" width="480" height="340" aria-label="${esc(f.name)}, ${f.sex.toLowerCase()} ${esc(pair.toLowerCase())} summative fish"></canvas><span>${f.sex}</span>${yours?'<b>YOUR AWARD</b>':''}</div><div class="summative-copy"><small>${f.rarity}</small><h5>${f.name}</h5><p>${f.detail}</p><span>✧ ${f.trailName}</span><span>↻ ${f.power}</span><button class="${ready?'claim-ready':''}" data-action="summativeAward" data-id="${esc(s.id)}" data-form="${key}" aria-label="${yours?'Equip':owner?'Sold out':'Award'} ${esc(f.name)} summative fish" ${ready||yours?'':'disabled'}>${esc(label)}</button>${equipped?`<button data-action="centennialPower" data-id="${esc(s.id)}" ${s.points<0?'disabled':''}>Perform champion move</button>`:''}</div></article>`;
   }).join('')}</div></section>`;
- }).join('')}<p class="limited-rules">Summative editions have separate ownership from the existing 100-point collection. Only the chosen version can be equipped; its partner stays reserved. Awards, exam labels and scores autosave and travel with your class backup. Changing looks or points keeps the pair reserved. Undo can correct a claim. Deleting its owner makes both versions available again.</p></section>`;
+ }).join('')}<p class="limited-rules">These new royal awards are separate from the existing 100-point collection. Only the chosen version can be equipped; its partner stays reserved. Awards, exam labels and scores autosave and travel with your class backup. Changing looks or points keeps the pair reserved. Undo can correct a claim. Deleting its owner makes both versions available again.</p></section>`;
+}
+function drawSummativeGlyph(c,key,x,y,r,time){
+ const f=FORMS[key];if(!f?.summative)return;c.save();c.translate(x,y);c.rotate(Math.sin(time*.7)*.16);c.fillStyle=f.glow;c.strokeStyle='#ffe3a0';c.lineWidth=.8;c.shadowColor=f.glow;c.shadowBlur=5;
+ if(f.motif==='heart')path(c,[['M',0,r*1.5],['C',-r*2,-r*.1,-r*1.5,-r*1.8,0,-r*.7],['C',r*1.5,-r*1.8,r*2,-r*.1,0,r*1.5],['Z']],f.sex==='Male'?'#ff9aab':'#ffd0ed','#ffe4a3',.7);
+ else if(f.motif==='letters'||f.motif==='infinity'){c.font='bold '+Math.max(7,r*3)+'px Georgia,serif';c.textAlign='center';c.textBaseline='middle';c.fillText(f.motif==='infinity'?'∞':['A','B','C'][Math.floor(time*.4)%3],0,0);}
+ else if(f.motif==='weave'){path(c,[['M',0,-r*1.6],['L',r*1.3,0],['L',0,r*1.6],['L',-r*1.3,0],['Z']],null,'#ffe7b1',1);ellipse(c,0,0,r*.45,r*.45,'#fff4db');}
+ else if(f.motif==='sun'){ellipse(c,0,0,r*.65,r*.65,'#ffe4a0');for(let i=0;i<8;i++){const a=i*Math.PI/4+time*.2;path(c,[['M',Math.cos(a)*r,Math.sin(a)*r],['L',Math.cos(a)*r*1.7,Math.sin(a)*r*1.7]],null,'#ffe4a0',.8);}}
+ else{path(c,[['M',0,r],['L',-r*1.5,r*.5],['L',-r*1.5,-r],['L',0,-r*.6],['L',r*1.5,-r],['L',r*1.5,r*.5],['Z']],f.glow+'66','#ffe6af',.8);path(c,[['M',0,-r*.6],['L',0,r]],null,'#fff4d7',.8);star(c,0,-r*1.7,r*.6,'#ffe7ad',time);}
+ c.restore();
 }
 function installSummative(){
- const oldStudio=buildLookStudio;buildLookStudio=function(s,previews){const html=oldStudio(s,previews);if(lookTab!=='summative')return html;previews.splice(0,previews.length);return '<div class="look-studio summative-studio">'+html.slice(html.indexOf('<div class="look-tabs"'));};
+ const oldStudio=buildLookStudio;buildLookStudio=function(s,previews){const html=oldStudio(s,previews);if(lookTab!=='summative')return html;for(let i=previews.length-1;i>=0;i--)if(previews[i].id==='lookFeatured')previews.splice(i,1);return '<div class="look-studio summative-studio">'+html.slice(html.indexOf('<div class="look-tabs"'));};
+ const oldCard=drawCardFish;drawCardFish=function(canvas,s,time=0,animate=false){if(!FORMS[effectiveForm(s)].summative)return oldCard(canvas,s,time,animate);if(!canvas)return;const c=canvas.getContext('2d'),ratio=fishGeometry(s).width/100,height=Math.min(canvas.height*.88,canvas.width*.88/ratio);c.clearRect(0,0,canvas.width,canvas.height);drawFish(c,s,canvas.width/2,canvas.height*.51,height/100,1,time,0,!animate);};
  const oldCallout=limitedCallout;limitedCallout=function(s){const mine=ownedSummative(s.id),available=SUMMATIVE_PAIRS.filter(pair=>!summativePairClaim(pair)).length;return `<button class="limited-callout summative-callout ${mine.length?'owned':''}" data-action="summativeOpen" data-id="${esc(s.id)}"><span>🏆 Summative champions${mine.length?' · '+mine.length+' awarded':''}</span><small>Teacher selects the highest scorer · ${available} pairs available ↗</small></button>`+oldCallout(s);};
  const oldParticle=drawSignatureParticle;drawSignatureParticle=function(c,p,time){
   if(!FORMS[p.kind]?.summative)return oldParticle(c,p,time);
-  drawCentennialGlyph(c,p.kind,p.x,p.y,p.size,time+(p.seed||0));star(c,p.x+p.size*1.5,p.y-p.size,p.size*.5,'#ffe5a3',time);
+  drawSummativeGlyph(c,p.kind,p.x,p.y,p.size,time+(p.seed||0));
  };
  const oldPerformance=drawFishPerformance;drawFishPerformance=function(c,s,w){
   if(FORMS[effectiveForm(s)].summative&&s.points>=0&&!state.settings.reduced&&!state.settings.paused&&!isFocusCalm()&&!boneEffectActive(w,Date.now())){
